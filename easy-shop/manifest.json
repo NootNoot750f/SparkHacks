@@ -1,1 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Buy Assistant",
+  "version": "1.0",
+  "description": "AI-powered purchase suggestions while you shop",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
 
