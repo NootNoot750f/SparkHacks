@@ -1,0 +1,17 @@
+# Dev secrets - NEVER commit these
+.env
+*.env.local
+*.env.*.local
+
+# Logs/build artifacts (keep extension clean)
+.DS_Store
+node_modules/
+dist/
+build/
+
+# IDE noise
+.vscode/
+.idea/
+
+# Extension dev (if testing unpacked)
+chrome-extension-debug/  # Or whatever your temp load folder is

@@ -3,9 +3,13 @@
   "name": "Smart Buy Assistant",
   "version": "1.0",
   "description": "AI-powered purchase suggestions while you shop",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"  // Updated: For Gemini API (free tier)
+  ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Smart Buy Assistant"
   },
   "content_scripts": [
     {
@@ -14,4 +18,3 @@
     }
   ]
 }
-

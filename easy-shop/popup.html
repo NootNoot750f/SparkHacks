@@ -1,9 +1,36 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <button id="analyze">Analyze Product</button>
-    <div id="output"></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Buy Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🛒 Smart Buy Assistant</h2>
+    
+    <!-- Tracking Toggle -->
+    <div class="section toggle-section">
+      <label class="toggle-label">
+        <input type="checkbox" id="enableTracking"> Enable session tracking (opt-in)
+      </label>
+      <small>Logs viewed products for personalized suggestions</small>
+    </div>
+    
+    <!-- Analyze Button -->
+    <button id="analyze" class="primary-btn">Analyze Current Product</button>
+    
+    <!-- Output Area -->
+    <div id="output" class="output"></div>
+    
+    <!-- History Button (if tracking enabled) -->
+    <button id="viewHistory" class="secondary-btn" style="display: none;">View Browsing History</button>
+    
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading" style="display: none;">Analyzing with AI...</div>
+  </div>
 
-    <script src="popup.js"></script>
-  </body>
+  <script src="popup.js"></script>
+</body>
 </html>
