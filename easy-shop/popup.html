@@ -7,28 +7,64 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Accessibility Controls -->
+  <div class="accessibility-controls" role="toolbar" aria-label="Accessibility settings">
+    <button id="toggleContrast" 
+            class="control-btn" 
+            aria-label="Toggle high contrast mode"
+            title="Toggle high contrast mode">
+      <span aria-hidden="true">◐</span> Contrast
+    </button>
+    
+    <div class="font-size-controls" role="group" aria-label="Font size controls">
+      <button class="control-btn font-btn" 
+              aria-label="Small font size"
+              data-size="small">A-</button>
+      <button class="control-btn font-btn active" 
+              aria-label="Medium font size"
+              data-size="medium">A</button>
+      <button class="control-btn font-btn" 
+              aria-label="Large font size"
+              data-size="large">A+</button>
+    </div>
+  </div>
+
   <div class="container">
-    <h2>🛒 Smart Buy Assistant</h2>
+    <h2>EzBuy AI Assistant</h2>
     
     <!-- Tracking Toggle -->
     <div class="section toggle-section">
       <label class="toggle-label">
-        <input type="checkbox" id="enableTracking"> Enable session tracking (opt-in)
+        <input type="checkbox" id="enableTracking" aria-describedby="trackingDesc"> 
+        Enable session tracking
       </label>
-      <small>Logs viewed products for personalized suggestions</small>
+      <small id="trackingDesc">Logs viewed products for personalized suggestions (optional)</small>
+    </div>
+
+    <!-- Sign in with Google -->
+    <div class="section auth-section">
+      <button id="signInBtn" class="primary-btn">Sign in with Google</button>
+      <button id="signOutBtn" class="secondary-btn" style="display:none;">Sign out</button>
+      <small id="authStatus">Not signed in</small>
     </div>
     
     <!-- Analyze Button -->
-    <button id="analyze" class="primary-btn">Analyze Current Product</button>
-    
-    <!-- Output Area -->
-    <div id="output" class="output"></div>
-    
-    <!-- History Button (if tracking enabled) -->
-    <button id="viewHistory" class="secondary-btn" style="display: none;">View Browsing History</button>
+    <button id="analyze" class="primary-btn" aria-label="Analyze current product page">
+      Analyze Current Product
+    </button>
     
     <!-- Loading Spinner -->
-    <div id="loading" class="loading" style="display: none;">Analyzing with AI...</div>
+    <div id="loading" class="loading" style="display: none;" role="status" aria-live="polite">
+      <span>Analyzing with AI...</span>
+    </div>
+    
+    <!-- Output Area -->
+    <div id="output" class="output" role="main"></div>
+    
+    <!-- History Button -->
+    <button id="viewHistory" class="secondary-btn" style="display: none;">
+      View Browsing History
+    </button>
   </div>
 
   <script src="popup.js"></script>

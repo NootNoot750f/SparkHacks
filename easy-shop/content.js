@@ -28,8 +28,10 @@ function extractProduct() {
     // Amazon
     if (url.includes('amazon.com')) {
       title = document.querySelector('#productTitle')?.innerText.trim() || '';
-      price = document.querySelector('.a-price-whole')?.innerText + document.querySelector('.a-price-fraction')?.innerText || '';
-      image = document.querySelector('#landingImage')?.src || '';
+      const whole = document.querySelector('.a-price-whole')?.innerText?.trim() || '';
+      const fraction = document.querySelector('.a-price-fraction')?.innerText?.trim() || '';
+      price = (whole || fraction) ? `${whole}${fraction ? '.' + fraction.replace(/[^0-9]/g, '') : ''}` : '';
+      image = document.querySelector('#landingImage')?.src || document.querySelector('.imgTagWrapper img')?.src || '';
     }
     // eBay
     else if (url.includes('ebay.com')) {
@@ -51,7 +53,7 @@ function extractProduct() {
     }
     
     // Clean price (e.g., "$19.99" -> "19.99")
-    price = price.replace(/[^0-9.]/g, '');
+    price = (price || '').toString().replace(/[^0-9.]/g, '');
     
     if (!title || !price) return null;
     
