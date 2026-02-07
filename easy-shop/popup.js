@@ -14,7 +14,7 @@ const viewHistoryBtn = document.getElementById('viewHistory');
 const loadingDiv = document.getElementById('loading');
 
 // Hardcoded API key (from .env—swap your GEMINI_API_KEY here for demo; never commit!)
-const apiKey = 'AIzaYourFreeGeminiKeyFromEnvHere';  // <-- Paste from .env here (e.g., 'AIzaSy...')
+const apiKey = 'AIzaSyCfwBZx1K-PmLK6yPys7ACZrVnEeDNtdpg';  
 
 // State from storage
 let isTrackingEnabled = false;
@@ -73,8 +73,23 @@ async function analyzeProduct() {
     if (!tab.id) throw new Error('No active tab found.');
     
     // Message content script for extraction
-    const productData = await chrome.tabs.sendMessage(tab.id, { action: 'extractProduct' });
-    
+    // Ensure content script exists (Amazon SPA fix)
+await chrome.scripting.executeScript({
+  target: { tabId: tab.id },
+  files: ['content.js']
+});
+
+// productData was giving issues.
+const productData = await new Promise((resolve, reject) => {
+  chrome.tabs.sendMessage(tab.id, { action: 'extractProduct' }, (response) => {
+    if (chrome.runtime.lastError) {
+      reject(new Error(chrome.runtime.lastError.message));
+    } else {
+      resolve(response);
+    }
+  });
+});
+
     if (!productData || !productData.title) {
       throw new Error('No product detected on this page. Try an e-commerce site like Amazon.');
     }

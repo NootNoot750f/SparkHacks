@@ -1,0 +1,3 @@
+# Smart Buy Assistant - Dev Secrets (copy to .env and fill in your own; Gemini for hack demo)
+GEMINI_API_KEY=AIzaSyCfwBZx1K-PmLK6yPys7ACZrVnEeDNtdpg
+# Fallbacks? Add 'em if we pivot back (e.g., GROK_API_KEY=sk-...)
